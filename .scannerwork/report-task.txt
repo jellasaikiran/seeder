@@ -1,0 +1,7 @@
+organization=jellasaikiran
+projectKey=jellasaikiran_seeder
+serverUrl=https://sonarcloud.io
+serverVersion=8.0.0.36537
+dashboardUrl=https://sonarcloud.io/dashboard?id=jellasaikiran_seeder
+ceTaskId=AYWc-LMpiYbHK8oh6Udt
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AYWc-LMpiYbHK8oh6Udt
