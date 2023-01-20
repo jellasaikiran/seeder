@@ -1,46 +1,53 @@
-import { Box, Grid, Stack, styled, Typography } from '@mui/material'
-import { theme } from '../../../theme/theme'
-import ButtonComponent from '../../atoms/Button'
-import TypographyComponent from '../../atoms/Typography'
+import { Box, Grid, Stack, styled, Typography } from "@mui/material";
+import { useLocation, useNavigate } from "react-router-dom";
+import { theme } from "../../../theme/theme";
+import ButtonComponent from "../../atoms/Button";
+import TypographyComponent from "../../atoms/Typography";
 
 const CardContainer = styled(Box)({
   padding: 32,
   background: theme.palette.elevation.color1,
   border: `0.163rem solid ${theme.palette.grey[300]}`,
   borderRadius: 12,
-})
+});
 
 const GridContainer = styled(Grid)({
-  display: 'flex',
-  flexDirection: 'column',
-})
+  display: "flex",
+  flexDirection: "column",
+});
 
 const HeadItem = styled(Grid)({
   paddingBottom: 12,
-  width: '50%',
-})
+  width: "50%",
+});
 
 const TextItem = styled(Grid)({
   paddingBottom: 12,
-})
+});
 
 const ButtonItem = styled(Grid)({
   paddingTop: 8,
-})
+});
 
 const StyledButton = styled(ButtonComponent)({
   height: 60,
   borderRadius: 12,
   color: theme.palette.grey[500],
-  textTransform: 'capitalize',
-})
+  textTransform: "capitalize",
+});
 
 interface Props {
-  balanceAmount: string
-  handleClick: () => void
+  balanceAmount: string;
+  handleClick: () => void;
 }
 
 export const CashKickCard = (props: Props) => {
+  const navigate = useNavigate();
+
+  const navigateToNewCashKick = () => {
+    navigate("/cashkick/create");
+  };
+
   return (
     <CardContainer>
       <GridContainer>
@@ -90,10 +97,10 @@ export const CashKickCard = (props: Props) => {
             textVariant="subtitle1"
             label="New Cash Kick"
             fullWidth
-            onClick={props.handleClick}
+            onClick={navigateToNewCashKick}
           />
         </ButtonItem>
       </GridContainer>
     </CardContainer>
-  )
-}
+  );
+};
