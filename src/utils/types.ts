@@ -8,7 +8,7 @@ export interface CONTRACT_TYPE {
   id: number;
   name: string;
   type: string;
-  totalAmount: number;
-  amountAvailable: number;
+  amount: number;
+  // totalAmount: number;
   // userId: string;
 }

@@ -3,7 +3,7 @@ import { CONTRACT_TYPE } from "./types";
 export const GREETING = "Congratulations you are ready to start!";
 export const FUNDING =
   "You are approved for funding. We are ready to advance you upto ";
-export const AMOUNT = "$8.3M";
+export const AMOUNT = "$8.8M";
 export const CREATE_CASH_KICK = "Name your cash kick";
 export const LOGOUT = "Logout";
 export const CASHKICK_TABLE_HEAD_CELL = [
@@ -24,22 +24,19 @@ export const CONTRACT_SAMPLE_DATA: CONTRACT_TYPE[] = [
     id: 1,
     name: "Contract1",
     type: "Monthly",
-    totalAmount: 126722.64,
-    amountAvailable: 126722.64,
+    amount: 144003
   },
   {
     id: 2,
     name: "Contract2",
     type: "Monthly",
-    totalAmount: 63360,
-    amountAvailable: 60360,
+    amount: 60360,
   },
   {
     id: 3,
     name: "Contract3",
     type: "Monthly",
-    totalAmount: 0,
-    amountAvailable: 60360,
+    amount: 60360,
   },
 ];
 export const CASHKICK_SAMPLE_DATA = [
@@ -65,3 +62,4 @@ export const PAY = "Pay back amount";
 export const RATE = "Rate%";
 export const TOT = "Total payout";
 export const INTEREST = "(12.00%)";
+export const ZERO_INTEREST = "(0.00%)";
