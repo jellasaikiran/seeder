@@ -4,6 +4,7 @@ import { theme } from "../../../theme/theme";
 import Chip from "../../atoms/Chip";
 import CheckboxComponent from "../../atoms/Checkbox";
 import TypographyComponent from "../../atoms/Typography";
+import { getBackgroundColor, getHeight, getOptionalBooleanAttributeValue, getPadding } from './utils'
 
 interface Props {
   variant: TABLE_CELL_VARIANT;
@@ -11,7 +12,9 @@ interface Props {
   isHeader?: boolean;
   content: string[];
   isStriked?: boolean;
-  isChecked?: boolean
+  isChecked?: boolean;
+  isIndeterminate?: boolean
+
   handleChange?: (
     event: React.ChangeEvent<HTMLInputElement>,
     checked: boolean
@@ -38,41 +41,18 @@ const Cell = styled("div")(
 const Detail = styled("div")(
   (props: { variant: "highlighted-text" | "normal-text" }) => ({
     color:
-      props.variant === 'highlighted-text'
+      props.variant === "highlighted-text"
         ? `${theme.palette.text.primary}`
         : `${theme.palette.text.disabled}`,
   })
 );
 
-const SubDetail = styled('div')((props: { isStriked: boolean }) => ({
-    textDecoration: props.isStriked ? 'line-through' : 'none',
-    color: `${theme.palette.text.disabled}`,
-  }))
+const SubDetail = styled("div")((props: { isStriked: boolean }) => ({
+  textDecoration: props.isStriked ? "line-through" : "none",
+  color: `${theme.palette.text.disabled}`,
+}));
 
-function getHeight(isHeader: boolean, variant: TABLE_CELL_VARIANT): string {
-  if (isHeader) return "1.35rem";
-  return variant === "check-box" ? "1.35rem" : "2.475rem";
-}
 
-function getPadding(isHeader: boolean, variant: TABLE_CELL_VARIANT): string {
-  if (isHeader) return "0.85rem";
-  return variant === "check-box"
-    ? "1.413rem 0.85rem 1.413rem 0.85rem"
-    : "0.85rem";
-}
-
-const getBackgroundColor = (isSelected: boolean, isHeader: boolean) => {
-  if (isSelected) {
-    return `${theme.palette.primary[600]}`;
-  }
-  return isHeader
-    ? `${theme.palette.grey[100]}`
-    : `${theme.palette.elevation.color1}`;
-};
-
-function getOptionalBooleanAttributeValue(value: boolean | undefined): boolean {
-  return value ? value : false;
-}
 
 export default function TableCell(props: Props) {
   if (props.variant == "check-box") {
@@ -83,10 +63,18 @@ export default function TableCell(props: Props) {
         isHeader={getOptionalBooleanAttributeValue(props.isHeader)}
         data-testid="tablecell-checkbox"
       >
-        <CheckboxComponent
-          onChange={props.handleChange}
-          checked={props.isSelected}
-        />
+        {props.isHeader ? (
+          <CheckboxComponent
+            onChange={props.handleChange}
+            checked={false}
+            indeterminate={props.isIndeterminate}
+          />
+        ) : (
+          <CheckboxComponent
+            onChange={props.handleChange}
+            checked={props.isSelected}
+          />
+        )}
       </Cell>
     );
   } else if (
@@ -102,7 +90,9 @@ export default function TableCell(props: Props) {
       >
         {props.content[0] && (
           <Detail variant={props.variant} data-testid="tablecell-text-detail">
-            <TypographyComponent variant="body2">{props.content[0]}</TypographyComponent>
+            <TypographyComponent variant="body2">
+              {props.content[0]}
+            </TypographyComponent>
           </Detail>
         )}
         {props.content[1] && (
@@ -110,7 +100,9 @@ export default function TableCell(props: Props) {
             isStriked={props.isStriked ? props.isStriked : false}
             data-testid="tablecell-text-subdetail"
           >
-            <TypographyComponent variant="caption4">{props.content[1]}</TypographyComponent>
+            <TypographyComponent variant="caption4">
+              {props.content[1]}
+            </TypographyComponent>
           </SubDetail>
         )}
       </Cell>
