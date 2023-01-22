@@ -1,4 +1,4 @@
-import { Box, CircularProgress, styled, Typography } from "@mui/material";
+import { Box, CircularProgress, styled } from "@mui/material";
 import { theme } from "../../../theme/theme";
 import TypographyComponent from "../../atoms/Typography";
 

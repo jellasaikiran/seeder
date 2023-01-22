@@ -3,7 +3,6 @@ import moment from "moment";
 import { HomePageTemplate } from ".";
 import { Banner } from "../../molecules/Banner";
 import { CashKickCard } from "../../molecules/CashCickCard";
-import CardsGrid from "../../organisms/CardsGrid";
 import Header from "../../organisms/Header";
 import { HomeCardGrid } from "../../organisms/HomeCardGrid";
 import { PaymentsTable } from "../../organisms/PaymentsTable";

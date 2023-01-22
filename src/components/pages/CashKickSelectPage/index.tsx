@@ -65,7 +65,6 @@ export const CashKickSelectPage = () => {
     for (let i = 0; i < isSelected.length; i++) {
       if (!isSelected[i] && value > sum) {
         sum = sum + contracts[i].amount;
-        // actualValue += contracts[i].amount;
         isSelected[i] = !isSelected[i];
         setIsSelected([...isSelected]);
       }
@@ -85,13 +84,11 @@ export const CashKickSelectPage = () => {
       if (isSelected[i] && sum - contracts[i].amount > value) {
         sum = sum - contracts[i].amount;
         isSelected[i] = !isSelected[i];
-        // actualValue -= contracts[i].amount;
         setIsSelected([...isSelected]);
       }
     }
     if (value === 0) {
       isSelected[0] = false;
-      // actualValue -= contracts[0].amount;
       setIsSelected([...isSelected]);
     }
     return value;

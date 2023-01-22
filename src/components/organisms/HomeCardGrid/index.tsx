@@ -1,5 +1,4 @@
-import { Grid, Stack, styled } from "@mui/material";
-import { Banner } from "../../molecules/Banner";
+import { Grid, styled } from "@mui/material";
 import { theme } from "../../../theme/theme";
 import ChipSet from "../../atoms/Chip";
 import CashAccelerationCard from "../../molecules/CashAccelerationCard";

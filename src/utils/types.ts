@@ -9,6 +9,4 @@ export interface CONTRACT_TYPE {
   name: string;
   type: string;
   amount: number;
-  // totalAmount: number;
-  // userId: string;
 }

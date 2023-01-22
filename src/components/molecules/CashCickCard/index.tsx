@@ -1,5 +1,5 @@
 import { Box, Grid, Stack, styled, Typography } from "@mui/material";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { theme } from "../../../theme/theme";
 import ButtonComponent from "../../atoms/Button";
 import TypographyComponent from "../../atoms/Typography";

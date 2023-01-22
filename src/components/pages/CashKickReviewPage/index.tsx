@@ -1,5 +1,5 @@
 import moment from "moment";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { postCashKicks } from "../../../api";
 import { CONTRACT_TYPE } from "../../../utils/types";

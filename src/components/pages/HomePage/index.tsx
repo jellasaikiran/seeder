@@ -1,5 +1,4 @@
-import styled from "@emotion/styled";
-import { Grid, Typography } from "@mui/material";
+import { Grid } from "@mui/material";
 import moment from "moment";
 import Illustration from "../../atoms/Illustration";
 import { Banner } from "../../molecules/Banner";

@@ -64,9 +64,6 @@ const ReviewButton = styled(ButtonComponent)({
 });
 
 export const SummaryCard = (props: Props) => {
-  const location = useLocation();
-  const navigate = useNavigate();
-
   return (
     <Box>
       <StyledGrid container direction={"column"} rowSpacing={5}>
