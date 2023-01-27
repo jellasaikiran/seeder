@@ -1,6 +1,5 @@
 import { Grid, styled } from "@mui/material";
 import { theme } from "../../../theme/theme";
-import Chip from "../../atoms/Chip";
 import { NavigationItem } from "../../molecules/navigationItem";
 import LeftArrow from "../../../../public/icons/left-arrow.svg";
 import SideMenu from "../../organisms/Menu";
@@ -30,7 +29,6 @@ export const NewCashKickTemplate = (props: Props) => {
   const navigate = useNavigate();
 
   const handleBackNavigation = () => {
-    console.log(location.pathname)
     if (location.pathname == "/cashkick/create" || location.pathname == '/cashAcceleration') {
       navigate("/");
     }

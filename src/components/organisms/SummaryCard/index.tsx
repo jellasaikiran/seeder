@@ -8,7 +8,6 @@ import ButtonComponent from "../../atoms/Button";
 import SummarySlider from "../../atoms/Slider";
 import { INTEREST, SELECTED, ZERO_INTEREST } from "../../../utils/constants";
 import { formatAmount } from "../../../utils/functions";
-import { useLocation, useNavigate } from "react-router-dom";
 
 interface Props {
   variant: "summary-slider" | "summary-review";
