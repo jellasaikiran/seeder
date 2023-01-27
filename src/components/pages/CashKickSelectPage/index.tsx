@@ -20,18 +20,21 @@ export const CashKickSelectPage = () => {
   useEffect(() => {
     getContracts().then((res) => {
       setContracts(res);
-      let selectedArray: boolean[] = isSelected;
+      const contractDetails = getTotalContractDetails(res);
+      setIsSelected([...contractDetails[1]]);
+      setTotalAmount(contractDetails[0]);
+    });
+  }, []);
+
+  const getTotalContractDetails = (res:CONTRACT_TYPE[]):[number, boolean[]] => {
+    let selectedArray: boolean[] = isSelected;
       let sum = 0;
       res.forEach((contract) => {
         sum += contract.amount;
         selectedArray.push(false);
       });
-      setIsSelected([...selectedArray]);
-      console.log(isSelected)
-      setTotalAmount(sum);
-    });
-  }, []);
-
+      return [sum, selectedArray];
+  }
   const handleReset = () => {
     isSelected.fill(false);
     setIsSelected([...isSelected]);
@@ -60,7 +63,6 @@ export const CashKickSelectPage = () => {
         sum = sum + contracts[i].amount;
       }
     }
-    console.log(sum, value, actualValue)
 
     for (let i = 0; i < isSelected.length; i++) {
       if (!isSelected[i] && value > sum) {
@@ -112,7 +114,6 @@ export const CashKickSelectPage = () => {
   };
 
   const handleHeaderCheckboxChange = () => {
-    console.log(isSelected)
     if (!indeterminate && !allRowsChecked) {
       isSelected.forEach((value, index) => (isSelected[index] = true));
     } else {
@@ -129,7 +130,6 @@ export const CashKickSelectPage = () => {
     isSelected.forEach((value) => {
       flag = flag || value;
     });
-    console.log(flag && !areAllRowsChecked())
     return flag;
   };
 
