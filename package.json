@@ -8,10 +8,14 @@
     "build": "webpack",
     "test": "jest --coverage",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "chromatic": "npx chromatic --project-token=1ff46412d6ab"
   },
   "keywords": [],
-  "author": "Jella SaiKiran <you@example.com>",
+  "author": {
+    "name": "Jella SaiKiran",
+    "email": "you@example.com"
+  },
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.20.12",
@@ -39,6 +43,7 @@
     "@types/react-dom": "^18.0.10",
     "axios": "^0.24.0",
     "babel-loader": "^9.1.2",
+    "chromatic": "^6.14.0",
     "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.7.3",
     "file-extension": "^4.0.5",
@@ -75,5 +80,7 @@
         }
       }
     ]
-  }
+  },
+  "readme": "ERROR: No README data found!",
+  "_id": "seeder@1.0.0"
 }
