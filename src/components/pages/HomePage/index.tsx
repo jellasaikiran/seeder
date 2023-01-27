@@ -20,7 +20,6 @@ export const HomePage = () => {
   const [outstanding, setOutstanding] = useState<number>(0);
   const [date, setDate] = useState<string[]>([]);
   const [amount, setAmount] = useState<number[]>([]);
-  const navigate = useNavigate();
   useEffect(() => {
     getPayments().then((res) => {
       const paymentDetails = getPaymentsDetails(res);
