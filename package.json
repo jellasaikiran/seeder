@@ -67,7 +67,10 @@
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@mui/material": "^5.11.4",
-    "storybook": "^6.5.15"
+    "jest-sonar-reporter": "^2.0.0",
+    "sonar-scanner": "^3.1.0",
+    "storybook": "^6.5.15",
+    "ts-node": "^10.9.1"
   },
   "eslintConfig": {
     "overrides": [
