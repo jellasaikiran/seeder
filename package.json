@@ -6,7 +6,7 @@
   "scripts": {
     "start": "webpack serve --config ./webpack.config.js --mode development",
     "build": "webpack",
-    "test": "jest --coverage",
+    "test": "jest -c jest.config.ts --passWithNoTests --forceExit --coverage",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "chromatic": "npx chromatic --project-token=1ff46412d6ab"
