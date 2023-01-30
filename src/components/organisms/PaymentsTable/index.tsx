@@ -41,7 +41,7 @@ export const PaymentsTable = (props: Props) => {
   for (let i = 1; i <= 12; i++) {
     for (let j = 0; j < props.cashKickDate.length; j++) {
       const monthlyAmount = props.amount[j] / 12;
-      const date = moment(`${props.cashKickDate[j]}`, "MMM DD, YYYY")
+      const date = moment(`${props.cashKickDate[j]}`)
         .add(i, "month")
         .format("MMM DD, YYYY");
       const days = moment(`${date}`, "MMM DD, YYYY").diff(

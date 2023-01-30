@@ -15,13 +15,13 @@ export const HomePageTemplate = (props: Props) => {
         <Grid item xs={2}>
           <SideMenu />
         </Grid>
-        <Grid item xs style={{"padding":"28px"}}>
-          <Grid container direction={"column"} spacing={5}>
+        <Grid item xs={10} style={{"padding":"28px"}}>
+          <Grid container direction={"column"} rowSpacing={5}>
             <Grid item xs={12}>
               {props.headerBox}
             </Grid>
             <Grid item xs={12}>
-              <Grid container spacing={7}>
+              <Grid container columnSpacing={7} maxHeight={300}>
                 <Grid item xs={8}>{props.cardsGrid}</Grid>
                 <Grid item xs={4}>{props.cashKickCard}</Grid>
               </Grid>

@@ -20,7 +20,6 @@ SummaryWithSlider.args = {
   payout: 150000,
   sum: 401282,
   value: 201082,
-  handleSliderChange: (event: any, value: any) => {}
 };
 
 export const SummaryReview = Template.bind({});

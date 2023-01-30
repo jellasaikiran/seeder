@@ -18,6 +18,7 @@ interface Props {
   areAllRowsChecked?: boolean
   handleHeaderCheckboxChange?: () => void;
   handleCheckboxChange: (index: number) => void;
+  isIndeterminate?: boolean
 }
 
 const tableContainer = {
@@ -41,8 +42,8 @@ export const ContractsTable = (props: Props) => {
                   variant={"check-box"}
                   content={[]}
                   isHeader={true}
-                  isChecked={props.areAllRowsChecked}
                   handleChange={props.handleHeaderCheckboxChange}
+                  isIndeterminate={props.isIndeterminate}
                 />
               )}
               {CONTRACT_TABLE_HEADERS.map((cellTitle) => (
@@ -81,7 +82,7 @@ export const ContractsTable = (props: Props) => {
                 <TableCell
                   variant={'normal-text'}
                   content={[
-                    `$${formatAmount((tableRow.totalAmount * 1.12) / 12)}`,
+                    `$${formatAmount((tableRow.amount) / 12)}`,
                   ]}
                   isSelected={props.isSelected[index]}
                 />
@@ -92,7 +93,7 @@ export const ContractsTable = (props: Props) => {
                 />
                 <TableCell
                     variant={'normal-text'}
-                    content={[`$${formatAmount(tableRow.amountAvailable)}`]}
+                    content={[`$${formatAmount(tableRow.amount * 0.88)}`]}
                     isSelected={props.isSelected[index]}
                     isStriked={true}
                   />

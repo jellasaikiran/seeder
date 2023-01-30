@@ -6,17 +6,20 @@ import info from "../../../../public/icons/info-circle.svg";
 import TypographyComponent from "../../atoms/Typography";
 import ButtonComponent from "../../atoms/Button";
 import SummarySlider from "../../atoms/Slider";
-import { INTEREST, SELECTED } from "../../../utils/constants";
+import { INTEREST, SELECTED, ZERO_INTEREST } from "../../../utils/constants";
 import { formatAmount } from "../../../utils/functions";
 
 interface Props {
   variant: "summary-slider" | "summary-review";
   term: number;
   selectedcontracts: number;
-  handleReset: () => void;
+  handleReset?: () => void;
   value: number;
   sum: number;
-  handleSliderChange?: (event: any, value: any) => void;
+  handleSliderChange?: (
+    event: any,
+    value: any
+  ) => void;
   payout: number;
   paybackamount: number;
   rate: number;
@@ -194,7 +197,7 @@ export const SummaryCard = (props: Props) => {
                   <TypographyComponent
                     variant="caption"
                     color={theme.palette.text.disabled}
-                    children={INTEREST}
+                    children={props.value>0 ? INTEREST: ZERO_INTEREST}
                   />
                   &nbsp;
                   <TypographyComponent
@@ -235,9 +238,19 @@ export const SummaryCard = (props: Props) => {
             variant="contained"
             textVariant="subtitle1"
             color="primary"
-            label={props.variant==="summary-slider"?"Review Your Credit": "Sumbit Your Credit"}
+            label={
+              props.variant === "summary-slider"
+                ? "Review Your Credit"
+                : "Sumbit Your Credit"
+            }
             onClick={props.handleReview}
-            disabled={props.variant === "summary-review"? false: props.value > 0 ? false : true}
+            disabled={
+              props.variant === "summary-review"
+                ? false
+                : props.value > 0
+                ? false
+                : true
+            }
           />
         </Grid>
       </StyledGrid>

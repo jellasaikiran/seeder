@@ -1,15 +1,14 @@
 import { Grid, styled } from "@mui/material";
 import { theme } from "../../../theme/theme";
-import Chip from "../../atoms/Chip";
 import { NavigationItem } from "../../molecules/navigationItem";
-import LeftArrow from '../../../../public/icons/left-arrow.svg'
-
+import LeftArrow from "../../../../public/icons/left-arrow.svg";
 import SideMenu from "../../organisms/Menu";
+import { useLocation, useNavigate } from "react-router-dom";
 
 interface Props {
   headerBox: JSX.Element;
   summaryBox: JSX.Element;
-  tableBox: JSX.Element
+  tableBox: JSX.Element;
 }
 
 const BackButton = styled("div")({
@@ -26,6 +25,17 @@ const BackButton = styled("div")({
 });
 
 export const NewCashKickTemplate = (props: Props) => {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleBackNavigation = () => {
+    if (location.pathname == "/cashkick/create" || location.pathname == '/cashAcceleration') {
+      navigate("/");
+    }
+    if (location.pathname == "/cashkick/review") {
+      navigate("/cashkick/create");
+    }
+  };
   return (
     <>
       <Grid container spacing={0}>
@@ -38,7 +48,7 @@ export const NewCashKickTemplate = (props: Props) => {
               {props.headerBox}
             </Grid>
             <Grid item xs={12}>
-              <BackButton>
+              <BackButton onClick={handleBackNavigation}>
                 <NavigationItem
                   variant={"functional"}
                   icon={""}
@@ -50,8 +60,12 @@ export const NewCashKickTemplate = (props: Props) => {
             </Grid>
             <Grid item xs={12}>
               <Grid container columnSpacing={5}>
-                <Grid item xs={8}>{props.tableBox}</Grid>
-                <Grid item xs={4}>{props.summaryBox}</Grid>
+                <Grid item xs={8}>
+                  {props.tableBox}
+                </Grid>
+                <Grid item xs={4}>
+                  {props.summaryBox}
+                </Grid>
               </Grid>
             </Grid>
           </Grid>

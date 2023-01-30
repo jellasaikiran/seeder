@@ -1,0 +1,54 @@
+{
+  "contracts": [
+    {
+      "id": 1,
+      "name": "Contract 1",
+      "type": "Monthly",
+      "amount": 144003
+    },
+    {
+      "id": 2,
+      "name": "Contract 6",
+      "type": "Monthly",
+      "amount": 72000
+    },
+    {
+      "id": 3,
+      "name": "Contract 5",
+      "type": "Monthly",
+      "amount": 72000
+    },
+    {
+      "id": 4,
+      "name": "Contract 2",
+      "type": "Monthly",
+      "amount": 60000
+    },
+    {
+      "id": 5,
+      "name": "Contract 3",
+      "type": "Monthly",
+      "amount": 60000
+    },
+    {
+      "id": 6,
+      "name": "Contract 4",
+      "type": "Monthly",
+      "amount": 48000
+    }
+  ],
+  "payments": [
+    {
+      "name": "my first cash kick",
+      "amount": 253442.64,
+      "timestamp": "2023-01-17",
+      "id": 1
+    },
+    {
+      "name": "my cash kick",
+      "amount": 179522.64,
+      "timestamp": "2023-01-20",
+      "id": 2
+    }
+  ]
+}
