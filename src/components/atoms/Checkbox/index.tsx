@@ -25,7 +25,7 @@ export default function CheckboxComponent(props: Props) {
   return (
     <Box>
       <StyledCheckBox
-        data-testid={`checkbox-1234`}
+        data-testid={`checkbox`}
         onChange={props.onChange}
         checked={props.checked}
         indeterminate={props.indeterminate}
