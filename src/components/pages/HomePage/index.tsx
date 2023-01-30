@@ -13,7 +13,6 @@ import { theme } from "../../../theme/theme";
 import { useEffect, useState } from "react";
 import { getPayments } from "../../../api";
 import { dateDifference, formatAmount } from "../../../utils/functions";
-import { useNavigate } from "react-router-dom";
 import { HomeCardGrid } from "../../organisms/HomeCardGrid";
 
 export const HomePage = () => {
