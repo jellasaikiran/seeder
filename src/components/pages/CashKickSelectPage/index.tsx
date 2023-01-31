@@ -16,6 +16,7 @@ export const CashKickSelectPage = () => {
   const navigate = useNavigate();
   const [indeterminate, setIndeterminate] = useState(false);
   const [allRowsChecked, setAllRowsChecked] = useState(false);
+  const [selectHistory, setSelectHistory] = useState<number[]>([]);
 
   useEffect(() => {
     getContracts().then((res) => {
@@ -26,18 +27,23 @@ export const CashKickSelectPage = () => {
     });
   }, []);
 
-  const getTotalContractDetails = (res:CONTRACT_TYPE[]):[number, boolean[]] => {
+  const getTotalContractDetails = (
+    res: CONTRACT_TYPE[]
+  ): [number, boolean[]] => {
     let selectedArray: boolean[] = isSelected;
-      let sum = 0;
-      res.forEach((contract) => {
-        sum += contract.amount;
-        selectedArray.push(false);
-      });
-      return [sum, selectedArray];
-  }
+    let sum = 0;
+    res.forEach((contract) => {
+      sum += contract.amount;
+      selectedArray.push(false);
+    });
+    return [sum, selectedArray];
+  };
+  
   const handleReset = () => {
     isSelected.fill(false);
     setIsSelected([...isSelected]);
+    selectHistory.splice(0, selectHistory.length);
+    setSelectHistory([...selectHistory]);
     setValue(0);
   };
 
@@ -53,52 +59,50 @@ export const CashKickSelectPage = () => {
     } else {
       newValue = handleCheckBoxOnSliderBackWardChange(newValue, value);
     }
+    setAllRowsChecked(areAllRowsChecked());
+    setIndeterminate(isIndeterminate());
     setValue(newValue);
   };
 
-  const handleCheckBoxOnSliderForwardChange = (value: number, actualValue: number) => {
-    let sum = 0;
-    for (let i = 0; i < isSelected.length; i++) {
-      if (isSelected[i]) {
-        sum = sum + contracts[i].amount;
-      }
+  const handleCheckBoxOnSliderForwardChange = (
+    sliderValue: number,
+    actualValue: number
+  ) => {
+    while (sliderValue > actualValue) {
+      let indexToBeChecked = isSelected.indexOf(false);
+      isSelected[indexToBeChecked] = true;
+      setIsSelected([...isSelected]);
+      actualValue = handleAmount(isSelected);
+      selectHistory.push(indexToBeChecked);
+      setSelectHistory([...selectHistory])
     }
-
-    for (let i = 0; i < isSelected.length; i++) {
-      if (!isSelected[i] && value > sum) {
-        sum = sum + contracts[i].amount;
-        isSelected[i] = !isSelected[i];
-        setIsSelected([...isSelected]);
-      }
-    }
-    return value;
-    
+    return actualValue;
   };
 
-  const handleCheckBoxOnSliderBackWardChange = (value: number, actualValue:number) => {
-    let sum = 0;
-    for (let i = 0; i < isSelected.length; i++) {
-      if (isSelected[i]) {
-        sum = sum + contracts[i].amount;
-      }
-    }
-    for (let i = isSelected.length - 1; i >= 0; i--) {
-      if (isSelected[i] && sum - contracts[i].amount > value) {
-        sum = sum - contracts[i].amount;
-        isSelected[i] = !isSelected[i];
-        setIsSelected([...isSelected]);
-      }
-    }
-    if (value === 0) {
-      isSelected[0] = false;
+  const handleCheckBoxOnSliderBackWardChange = (
+    sliderValue: number,
+    actualValue: number
+  ) => {
+    while (sliderValue < actualValue && selectHistory.length>0) {
+      let recentSelectedIndex = selectHistory[selectHistory.length - 1];
+      isSelected[recentSelectedIndex] = false;
       setIsSelected([...isSelected]);
+      actualValue = handleAmount(isSelected);
+      selectHistory.splice(selectHistory.length - 1, 1);
+      setSelectHistory([...selectHistory])
     }
-    return value;
+    return actualValue;
   };
 
   const handleCheckboxChange = (index: number) => {
     isSelected[index] = !isSelected[index];
     setIsSelected([...isSelected]);
+    if (isSelected[index]) {
+      selectHistory.push(index);
+    } else {
+      selectHistory.splice(selectHistory.indexOf(index, 0), 1);
+    }
+    setSelectHistory([...selectHistory]);
     handleAmount(isSelected);
     setIndeterminate(isIndeterminate());
   };
@@ -111,14 +115,22 @@ export const CashKickSelectPage = () => {
       }
     }
     setValue(amount);
+    return amount;
   };
 
   const handleHeaderCheckboxChange = () => {
     if (!indeterminate && !allRowsChecked) {
-      isSelected.forEach((value, index) => (isSelected[index] = true));
+      isSelected.forEach((value, index) => {
+        selectHistory.push(index);
+        isSelected[index] = true;
+      });
     } else {
-      isSelected.forEach((value, index) => (isSelected[index] = false));
+      selectHistory.splice(0, selectHistory.length);
+      isSelected.forEach((value, index) => {
+        isSelected[index] = false;
+      });
     }
+    setSelectHistory([...selectHistory]);
     setIsSelected([...isSelected]);
     handleAmount(isSelected);
     setAllRowsChecked(areAllRowsChecked());

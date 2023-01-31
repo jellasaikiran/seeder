@@ -15,10 +15,10 @@ interface Props {
   variant: "cashkick-setup" | "cashkick-selected";
   data: CONTRACT_TYPE[];
   isSelected: boolean[];
-  areAllRowsChecked?: boolean
+  areAllRowsChecked?: boolean;
   handleHeaderCheckboxChange?: () => void;
   handleCheckboxChange: (index: number) => void;
-  isIndeterminate?: boolean
+  isIndeterminate?: boolean;
 }
 
 const tableContainer = {
@@ -56,48 +56,45 @@ export const ContractsTable = (props: Props) => {
             </StyledTableRow>
           </TableHead>
           <TableBody>
-            {props.data.map((tableRow:any, index:number) => (
+            {props.data.map((tableRow: any, index: number) => (
               <StyledTableRow>
-                {props.variant === 'cashkick-setup' && (
+                {props.variant === "cashkick-setup" && (
                   <TableCell
-                    variant={'check-box'}
+                    variant={"check-box"}
                     content={[]}
                     isHeader={false}
                     isSelected={props.isSelected[index] ? true : false}
                     handleChange={() => {
-                      props.handleCheckboxChange(index)
+                      props.handleCheckboxChange(index);
                     }}
                   />
                 )}
                 <TableCell
-                  variant={'highlighted-text'}
+                  variant={"highlighted-text"}
                   content={[tableRow.name]}
                   isSelected={props.isSelected[index]}
                 />
                 <TableCell
-                  variant={'normal-text'}
-                  content={['Monthly']}
+                  variant={"normal-text"}
+                  content={["Monthly"]}
                   isSelected={props.isSelected[index]}
                 />
                 <TableCell
-                  variant={'normal-text'}
-                  content={[
-                    `$${formatAmount((tableRow.amount) / 12)}`,
-                  ]}
+                  variant={"normal-text"}
+                  content={[`$${formatAmount(tableRow.amount / 12)}`]}
                   isSelected={props.isSelected[index]}
                 />
                 <TableCell
-                  variant={'normal-text'}
-                  content={['12 months', '12.0% fee']}
+                  variant={"normal-text"}
+                  content={["12 months", "12.0% fee"]}
                   isSelected={props.isSelected[index]}
                 />
                 <TableCell
-                    variant={'normal-text'}
-                    content={[`$${formatAmount(tableRow.amount * 0.88)}`]}
-                    isSelected={props.isSelected[index]}
-                    isStriked={true}
-                  />
-
+                  variant={"normal-text"}
+                  content={[`$${formatAmount(tableRow.amount * 0.88)}`]}
+                  isSelected={props.isSelected[index]}
+                  isStriked={true}
+                />
               </StyledTableRow>
             ))}
           </TableBody>
